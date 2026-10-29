@@ -1,0 +1,135 @@
+:root {
+    color-scheme: light;
+    --ink: #1d2925;
+    --muted: #64736d;
+    --paper: #f3f5ef;
+    --surface: #ffffff;
+    --line: #d7dfd8;
+    --green: #176b52;
+    --green-dark: #10513e;
+    --coral: #b43e31;
+    --coral-pale: #fff0ed;
+    --success: #176343;
+    --success-pale: #eaf5ee;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    color: var(--ink);
+    background: radial-gradient(ellipse at 12% 0%, #e1eee4 0, transparent 38%), var(--paper);
+    font: 16px/1.55 "Aptos", "Segoe UI", sans-serif;
+}
+
+a { color: var(--green-dark); }
+a:hover { color: var(--green); }
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 68px;
+    padding: 0 clamp(1rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--line);
+    background: rgb(255 255 255 / 84%);
+}
+
+.brand {
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.site-header nav { display: flex; align-items: center; gap: 1.2rem; }
+.site-header nav a, .nav-link { font-size: .94rem; font-weight: 650; }
+.nav-form { display: inline; margin: 0; }
+.nav-link { padding: 0; border: 0; background: none; color: var(--green-dark); cursor: pointer; }
+
+.page {
+    width: min(100% - 2rem, 540px);
+    min-height: calc(100vh - 128px);
+    margin: 0 auto;
+    padding: clamp(2.5rem, 8vh, 5.5rem) 0;
+}
+
+.panel {
+    padding: clamp(1.4rem, 5vw, 2.25rem);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--surface);
+    box-shadow: 0 14px 40px rgb(34 55 44 / 7%);
+    animation: arrive .35s ease-out both;
+}
+
+@keyframes arrive {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 { margin: 0 0 .45rem; font-family: Georgia, "Times New Roman", serif; line-height: 1.2; }
+h1 { font-size: clamp(1.8rem, 5vw, 2.25rem); }
+.intro { margin: 0 0 1.65rem; color: var(--muted); }
+
+.field { margin: 1rem 0; }
+label { display: block; margin-bottom: .35rem; font-weight: 650; }
+input {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    padding: .65rem .75rem;
+    border: 1px solid #aebbb2;
+    border-radius: 4px;
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+}
+input:focus { border-color: var(--green); outline: 3px solid rgb(23 107 82 / 17%); }
+
+.button {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: .62rem 1rem;
+    border: 1px solid var(--green);
+    border-radius: 4px;
+    background: var(--green);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+}
+.button:hover { border-color: var(--green-dark); background: var(--green-dark); color: #fff; }
+.button-secondary { border-color: var(--line); background: white; color: var(--ink); }
+.button-secondary:hover { border-color: var(--muted); background: var(--paper); color: var(--ink); }
+.actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.4rem; }
+.form-actions { margin-top: 1.4rem; }
+
+.message { margin: 1rem 0; padding: .8rem 1rem; border-radius: 4px; }
+.message-error { border: 1px solid #e8b6af; background: var(--coral-pale); color: #79251e; }
+.message-success { border: 1px solid #b5d5c1; background: var(--success-pale); color: #164b32; }
+.message ul { margin: .25rem 0; padding-left: 1.25rem; }
+.form-links { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin-top: 1.2rem; }
+
+.profile-data { margin: 1.5rem 0 0; }
+.profile-data div { padding: .9rem 0; border-top: 1px solid var(--line); }
+.profile-data dt { color: var(--muted); font-size: .88rem; }
+.profile-data dd { margin: .15rem 0 0; font-weight: 650; overflow-wrap: anywhere; }
+.site-footer { padding: 1rem; color: var(--muted); text-align: center; font-size: .88rem; }
+.site-footer p { margin: 0; }
+
+@media (max-width: 480px) {
+    .site-header { align-items: flex-start; flex-direction: column; padding-top: .75rem; padding-bottom: .75rem; }
+    .site-header nav { flex-wrap: wrap; gap: 1rem; }
+    .page { width: min(100% - 1.25rem, 540px); padding-top: 1.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; }
+}

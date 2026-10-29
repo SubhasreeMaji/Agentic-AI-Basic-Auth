@@ -1,0 +1,185 @@
+# Project: Basic PHP User Authentication System
+
+Build a complete, beginner-friendly user authentication project using **Core PHP, HTML, CSS, and MySQL**. Do not use any PHP frameworks such as Laravel or CodeIgniter.
+
+## 1. Technology Stack
+- Backend: Core PHP
+- Frontend: HTML5 and CSS3
+- Database: MySQL
+- Database connection: PHP PDO with prepared statements
+- Environment: XAMPP or another standard local PHP/MySQL environment
+
+## 2. Required Features
+
+### A. Registration
+Create a registration page with:
+- Full name
+- Email address
+- Password
+- Confirm password
+
+Requirements:
+- Validate all required fields.
+- Validate email format.
+- Ensure passwords match.
+- Prevent duplicate email registrations.
+- Hash passwords using `password_hash()`.
+- Save user information in the MySQL database.
+- Redirect to the login page after successful registration.
+
+### B. Login
+Create a login page with:
+- Email address
+- Password
+
+Requirements:
+- Validate user credentials securely using `password_verify()`.
+- Start a PHP session after successful login.
+- Redirect authenticated users to their profile page.
+- Display an appropriate error message for invalid credentials.
+
+### C. User Profile and Edit Profile
+
+Create a profile page that displays:
+- Full name
+- Email address
+- Account creation date
+
+**Edit Profile functionality:**
+- Add an "Edit Profile" button on the profile page.
+- Create a separate `edit-profile.php` page with a form.
+- Allow the logged-in user to edit their full name and email address.
+- Pre-fill the form with the user's existing information.
+- Validate all fields on the server side.
+- Validate the email format.
+- Ensure the updated email address is not already registered to another user.
+- Save changes to the MySQL database using PDO prepared statements.
+- Update the `updated_at` timestamp.
+- Display a success message after a successful update.
+- Display clear validation errors if the update fails.
+- Redirect the user back to the profile page after a successful update.
+- Require authentication to access the edit profile page.
+- Allow users to update only their own account information.
+- Do not allow users to modify their user ID, password hash, or account creation date through the edit profile form.
+- Keep password changes separate from profile editing.
+
+Update the project structure to include:
+
+- `profile.php` — displays the user's profile.
+- `edit-profile.php` — allows the logged-in user to edit their profile.
+- `update-profile.php` — optional separate handler for processing profile updates, if needed.
+
+Ensure the Edit Profile button is visible only to authenticated users and that the feature works with the existing login, registration, logout, and password-reset functionality.
+
+### D. Logout
+Create a logout feature that:
+- Clears the user's session.
+- Destroys the session securely.
+- Redirects the user to the login page.
+- Prevents access to protected pages after logout.
+
+### E. Reset Password
+Create a secure password-reset workflow.
+
+Requirements:
+- Provide a "Forgot Password?" link on the login page.
+- Allow users to enter their registered email address.
+- Generate a cryptographically secure, single-use reset token using `random_bytes()`.
+- Store only a hash of the reset token in the database, with an expiration time.
+- Provide a reset-password page that validates the token and expiration.
+- Allow users to enter and confirm a new password.
+- Hash the new password using `password_hash()`.
+- Invalidate the token after a successful reset.
+- Invalidate existing reset tokens when a new one is generated.
+- Do not reveal whether an email address is registered.
+- Do not display passwords or store them in plain text.
+
+For local development, provide a safe way to inspect the generated reset link without requiring a real email account. Clearly separate this development feature from production email delivery.
+
+## 3. Database Structure
+
+Create a MySQL database named `basic_auth_project`.
+
+Create a `users` table containing:
+- `id` — primary key, auto-increment
+- `full_name` — user's full name
+- `email` — unique email address
+- `password` — hashed password
+- `created_at` — account creation timestamp
+- `updated_at` — profile update timestamp
+
+Create a `password_resets` table containing:
+- `id` — primary key, auto-increment
+- `user_id` — reference to the users table
+- `token_hash` — hashed reset token
+- `expires_at` — token expiration timestamp
+- `created_at` — token creation timestamp
+
+Include a complete SQL file to create the database and tables.
+
+## 4. Suggested Project Structure
+
+Organize the project as follows:
+
+basic-auth-project/
+- config/
+  - database.php
+- includes/
+  - auth.php
+  - header.php
+  - footer.php
+- assets/
+  - css/
+    - style.css
+- register.php
+- login.php
+- profile.php
+- update-profile.php
+- forgot-password.php
+- reset-password.php
+- logout.php
+- index.php
+- database.sql
+- README.md
+
+You may add other files when needed, but keep the structure simple and explain their purpose.
+
+## 5. Security Requirements
+- Use PDO prepared statements for all database queries.
+- Use PHP password hashing and verification functions.
+- Regenerate the session ID after successful login.
+- Enable session cookie security settings where supported.
+- Protect state-changing forms against CSRF attacks.
+- Escape output with `htmlspecialchars()` to prevent XSS.
+- Validate all user input on the server.
+- Restrict profile access to the logged-in user.
+- Use generic login and password-reset responses where appropriate.
+- Never commit database credentials or secrets to a public repository.
+- Do not use deprecated PHP functions.
+- Do not store passwords or reset tokens in plain text.
+
+## 6. UI Requirements
+Create a simple, clean, responsive interface with:
+- Consistent navigation
+- Centered login and registration forms
+- Clear form labels
+- Success and error messages
+- Password confirmation fields
+- Links between login, registration, and forgot-password pages
+- A profile page with a logout button
+
+Use plain HTML and CSS. Avoid unnecessary JavaScript libraries and external dependencies.
+
+## 7. Development Instructions
+1. Inspect the current VS Code workspace before creating files.
+2. If it already contains a project, do not overwrite existing files without asking me.
+3. Create the complete project files and working PHP code.
+4. Provide the SQL schema and instructions for importing it into MySQL.
+5. Explain how to configure the database connection for XAMPP.
+6. Explain how to run the project locally using Apache and MySQL.
+7. Explain how to test registration, login, profile updates, logout, and password reset.
+8. Check the code for syntax errors and obvious security issues.
+9. Keep the code beginner-friendly and well organized.
+10. Do not claim that a feature has been tested unless you actually tested it.
+
+Start by showing me the proposed project structure and a short implementation plan. Wait for my approval before creating or modifying any files.
