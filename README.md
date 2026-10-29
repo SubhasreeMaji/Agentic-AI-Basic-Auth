@@ -1,3 +1,4 @@
+HEAD
 # Basic PHP Authentication
 
 A small user-authentication project built with core PHP, HTML, CSS, MySQL, and PDO. It has no PHP framework or JavaScript dependency.
@@ -37,3 +38,4 @@ The reset-link log is only written when `APP_ENV === 'development'`. For product
 - Forms that change state use CSRF tokens. Output is escaped with `htmlspecialchars()`.
 - Profile updates use the logged-in session's user ID; ID, password, and creation date are not editable in that form.
 - Use HTTPS, production database credentials, error logging, and an actual email provider before deploying publicly. Disable development reset-link logging in production.
+
